@@ -1,3 +1,4 @@
+from pathlib import Path
 from pydantic_settings import BaseSettings
 
 
@@ -18,7 +19,8 @@ class Settings(BaseSettings):
     storage_backend: str = "local"
     storage_path: str = "./downloads"
 
-    model_config = {"env_file": "../.env", "case_sensitive": False}
+    env_file = Path(__file__).parent.parent / ".env"
+    model_config = {"env_file": str(env_file), "case_sensitive": False}
 
 
 settings = Settings()
