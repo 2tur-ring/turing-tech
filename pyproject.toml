@@ -1,2 +1,23 @@
+[project]
+name = "turing-tech"
+version = "0.1.0"
+description = "FastAPI backend for Turing Tech"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi==0.115.6",
+    "uvicorn[standard]==0.34.0",
+    "sqlalchemy==2.0.36",
+    "psycopg2-binary==2.9.10",
+    "alembic==1.14.0",
+    "python-jose[cryptography]==3.3.0",
+    "passlib[bcrypt]==1.7.4",
+    "python-multipart==0.0.19",
+    "pydantic==2.10.3",
+    "pydantic-settings==2.7.0",
+    "python-dotenv==1.0.1",
+    "httpx==0.28.1",
+    "google-auth==2.53.0",
+]
+
 [tool.vercel]
 entrypoint = "backend.main:app"
