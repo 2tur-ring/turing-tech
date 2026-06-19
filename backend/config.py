@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from pydantic_settings import BaseSettings
 
@@ -19,8 +20,15 @@ class Settings(BaseSettings):
     storage_backend: str = "local"
     storage_path: str = "./downloads"
 
-    env_file = Path(__file__).parent.parent / ".env"
-    model_config = {"env_file": str(env_file), "case_sensitive": False}
+    model_config = {"case_sensitive": False}
+
+    def __init__(self, **data):
+        super().__init__(**data)
+        # Tenta carregar .env se existir (apenas em desenvolvimento)
+        env_file = Path(__file__).parent.parent / ".env"
+        if env_file.exists():
+            from dotenv import load_dotenv
+            load_dotenv(env_file)
 
 
 settings = Settings()
